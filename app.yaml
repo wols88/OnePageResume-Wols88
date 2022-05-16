@@ -1,0 +1,23 @@
+api_version: 1
+
+env: standard
+runtime: python27
+service: <service-name>
+threadsafe: yes
+
+
+handlers:
+
+- url: /(.*\.(css|eot|gz|html|ico|js|map|png|jpg|jpeg|svg|ttf|woff|woff2|pdf|gif))
+  static_files: dist/browser/\1
+  upload: dist/browser/(.*\.(css|eot|gz|html|ico|js|map|png|jpg|jpeg|svg|ttf|woff|woff2|pdf|gif))
+  expiration: "365d"
+
+- url: /.*
+  static_files: dist/browser/main.html
+  upload: dist/browser/main.html
+  secure: always
+  expiration: "0s"
+
+skip_files:
+ ## bunch of files
